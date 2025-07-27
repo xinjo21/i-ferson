@@ -9,6 +9,7 @@ interface ButtonProps {
   variant?: "primarySolid" | "secondarySolid";
   opacity?: "solid" | "semi";
   className?: string;
+  disabled?: boolean;
 }
 
 const Button: FC<ButtonProps> = ({
@@ -16,20 +17,25 @@ const Button: FC<ButtonProps> = ({
   onClick,
   size = "md",
   variant = "primarySolid",
+  disabled = false,
 }) => {
   const variantClasses = {
     primarySolid: `bg-blue-400 hover:bg-blue-500`,
-    secondarySolid: `bg-pink-500 hover:bg-pink-600`,
+    secondarySolid: `bg-pink-400 hover:bg-pink-500`,
   };
 
   return (
     <button
       className={classNames(
         variantClasses[variant],
-        `text-${size}`,
-        `font-bold px-4 py-2 rounded-full backdrop-blur-xs transition-colors duration-300`
+        `text-${size} text-white shadow-md`,
+        `font-bold px-4 py-2 rounded-full backdrop-blur-xs transition-colors duration-300`,
+        disabled
+          ? `bg-gray-400 hover:bg-gray-400 cursor-not-allowed text-gray-600`
+          : ``
       )}
       onClick={onClick}
+      disabled={disabled}
     >
       {children}
     </button>

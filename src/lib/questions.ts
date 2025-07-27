@@ -3,7 +3,7 @@ import { QuestionT } from "@/type/global";
 export const questions: QuestionT[] = [
   {
     question: "When faced with a problem, you:",
-    answers: [
+    answersKey: [
       "Talk it out with someone",
       "Think it through alone and research",
       "Act fast, deal with it later",
@@ -12,7 +12,7 @@ export const questions: QuestionT[] = [
   },
   {
     question: "Your ideal weekend would be:",
-    answers: [
+    answersKey: [
       "Out with friends or an event",
       "Working on a personal or creative project",
       "Doing something spontaneous or wild",
@@ -21,7 +21,7 @@ export const questions: QuestionT[] = [
   },
   {
     question: "In a group, you’re usually:",
-    answers: [
+    answersKey: [
       "The talker or storyteller",
       "Observing quietly, speaking when it matters",
       "The joker or thrill-seeker",
@@ -30,7 +30,7 @@ export const questions: QuestionT[] = [
   },
   {
     question: "You handle stress by:",
-    answers: [
+    answersKey: [
       "Venting to someone",
       "Isolating to reset",
       "Distracting yourself with activity",
@@ -39,7 +39,7 @@ export const questions: QuestionT[] = [
   },
   {
     question: "When someone disrespects you, your first reaction is:",
-    answers: [
+    answersKey: [
       "Confront them head-on",
       "Cut them off silently",
       "Throw shade or clown them",
@@ -48,7 +48,7 @@ export const questions: QuestionT[] = [
   },
   {
     question: "You prefer work that is:",
-    answers: [
+    answersKey: [
       "People-facing and social",
       "Focused and independent",
       "Fast-paced and changing",
@@ -57,7 +57,7 @@ export const questions: QuestionT[] = [
   },
   {
     question: "You value:",
-    answers: [
+    answersKey: [
       "Social connection and expression",
       "Logic, knowledge, and understanding",
       "Freedom, thrill, and unpredictability",
@@ -66,7 +66,7 @@ export const questions: QuestionT[] = [
   },
   {
     question: "Which sounds more like you?",
-    answers: [
+    answersKey: [
       "Energetic and outgoing",
       "Thoughtful and reserved",
       "Bold and spontaneous",

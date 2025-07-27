@@ -1,39 +1,58 @@
 "use client";
 
-import { FC, useState } from "react";
+import { FC } from "react";
 import { QuestionT } from "@/type/global";
 import Container from "./Shared/Container";
+import { getCharValue } from "@/utils/getCharValue";
 
-const QuestionCard: FC<QuestionT> = ({ question, answers }) => {
-  const [selectedAnswers, setSelectedAnswers] = useState<number[]>([]);
+interface QuestionCardProps extends QuestionT {
+  questionNumber: number;
+  selectedAnswers: string[];
+  setSelectedAnswers: (answers: string[]) => void;
+  hasError: boolean;
+}
 
+const QuestionCard: FC<QuestionCardProps> = ({
+  question,
+  answersKey,
+  questionNumber,
+  selectedAnswers,
+  setSelectedAnswers,
+  hasError,
+}) => {
   return (
-    <Container>
-      <h2 className="text-xl font-semibold mb-4">{question}</h2>
+    <Container className={hasError ? "border-2 border-red-500" : ""}>
+      <h2 className="text-xl font-semibold mb-4">
+        {questionNumber}. {question}
+      </h2>
       <div className="space-y-2">
-        {answers.map((answer, index) => (
+        {answersKey.map((answerKey, index) => (
           <label key={index} className="flex items-center space-x-2">
             <input
               type="checkbox"
-              value={index}
+              value={getCharValue(index)}
               disabled={
-                selectedAnswers.length === 2 && !selectedAnswers.includes(index)
+                selectedAnswers.length === 2 &&
+                !selectedAnswers.includes(getCharValue(index))
               }
-              checked={selectedAnswers.includes(index)}
-              onChange={() => {
-                if (selectedAnswers.includes(index)) {
+              checked={selectedAnswers.includes(getCharValue(index))}
+              onChange={(e) => {
+                if (selectedAnswers.includes(getCharValue(index))) {
                   setSelectedAnswers(
-                    selectedAnswers.filter((i) => i !== index)
+                    selectedAnswers.filter((i) => i !== getCharValue(index))
                   );
                 } else if (selectedAnswers.length < 2) {
-                  setSelectedAnswers([...selectedAnswers, index]);
+                  setSelectedAnswers([...selectedAnswers, getCharValue(index)]);
                 }
               }}
             />
-            <span>{answer}</span>
+            <span>{answerKey}</span>
           </label>
         ))}
       </div>
+      {hasError && (
+        <p className="text-sm text-red-500 mt-4">Select 1 or 2 answers</p>
+      )}
     </Container>
   );
 };
