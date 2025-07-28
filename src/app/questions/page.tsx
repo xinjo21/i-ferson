@@ -74,8 +74,6 @@ export default function QuestionsPage() {
   const isLastQuestion = activeQuestion === questions.length - 1;
 
   useEffect(() => {
-    console.log(object?.personality);
-
     if (object?.personality && !isLoading) {
       setPersonality({
         ...defaultPersonality,
