@@ -1,15 +1,25 @@
 import type { Metadata } from "next";
-import Itim from "next/font/local";
+import { Raleway } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import { PersonalityProvider } from "@/context/usePersonality";
 
-const itim = Itim({
-  src: "../fonts/Itim/Itim-Regular.ttf",
+// Load Raleway font
+const raleway = Raleway({
+  subsets: ["latin"],
+  variable: "--font-raleway",
   display: "swap",
 });
 
+// Load local Itim font
+const itim = localFont({
+  src: "../fonts/Itim/Itim-Regular.ttf",
+  display: "swap",
+  variable: "--font-itim",
+});
+
 export const metadata: Metadata = {
-  title: "Imong Ferson?!",
+  title: "Ferson",
   description: "Personality quiz to find out who you are",
 };
 
@@ -20,7 +30,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${itim.className}  antialiased`}>
+      <body
+        className={`antialiased ${itim.className} ${raleway.variable} font-sans`}
+      >
         <PersonalityProvider>{children}</PersonalityProvider>
       </body>
     </html>

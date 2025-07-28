@@ -1,7 +1,7 @@
 "use client";
 
 import { PersonalityT } from "@/type/global";
-import { createContext, FC, useContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 
 export interface PersonalityContextType {
   personality: PersonalityT | undefined;

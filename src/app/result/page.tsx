@@ -9,8 +9,9 @@ const ResultPage: FC = () => {
 
   const { personality } = usePersonality();
 
-  if (!personality) {
-    router.push("/result");
+  if (personality?.match === "") {
+    router.push("/questions");
+    return null;
   }
 
   return (
@@ -35,8 +36,12 @@ const ResultPage: FC = () => {
             </p>
           </div>
           <div className="p-6">
-            <p className="text-gray-700 mb-4">{personality?.summary}</p>
-            <p className="text-gray-700">{personality?.insights}</p>
+            <p className="text-gray-700 mb-4 font-raleway text-justify indent-4">
+              {personality?.summary}
+            </p>
+            <p className="text-gray-700 font-raleway text-justify indent-4">
+              {personality?.insights}
+            </p>
           </div>
         </div>
 
@@ -50,7 +55,9 @@ const ResultPage: FC = () => {
               </h3>
             </div>
             <div className="p-5">
-              <p className="text-gray-700">{personality?.mbti.description}</p>
+              <p className="text-gray-700 font-raleway text-justify indent-4">
+                {personality?.mbti.description}
+              </p>
             </div>
           </div>
 
@@ -62,7 +69,7 @@ const ResultPage: FC = () => {
               </h3>
             </div>
             <div className="p-5">
-              <p className="text-gray-700">
+              <p className="text-gray-700 font-raleway text-justify indent-4">
                 {personality?.enneagram.description}
               </p>
             </div>
@@ -77,7 +84,9 @@ const ResultPage: FC = () => {
               <h3 className="text-xl font-semibold text-green-700 mb-3">
                 Strengths
               </h3>
-              <p className="text-gray-700">{personality?.strengths}</p>
+              <p className="text-gray-700 font-raleway text-justify indent-4">
+                {personality?.strengths}
+              </p>
             </div>
           </div>
 
@@ -87,7 +96,9 @@ const ResultPage: FC = () => {
               <h3 className="text-xl font-semibold text-red-700 mb-3">
                 Areas for Growth
               </h3>
-              <p className="text-gray-700">{personality?.weaknesses}</p>
+              <p className="text-gray-700 font-raleway text-justify indent-4">
+                {personality?.weaknesses}
+              </p>
             </div>
           </div>
         </div>
@@ -102,13 +113,15 @@ const ResultPage: FC = () => {
               <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center">
                 <span className="mr-2">💘</span> In Love
               </h3>
-              <p className="text-gray-700">{personality?.relation.love}</p>
+              <p className="text-gray-700 font-raleway text-justify indent-4">
+                {personality?.relation.love}
+              </p>
             </div>
             <div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center">
                 <span className="mr-2">👥</span> In Friendship
               </h3>
-              <p className="text-gray-700">
+              <p className="text-gray-700 font-raleway text-justify indent-4">
                 {personality?.relation.friendship}
               </p>
             </div>
@@ -116,13 +129,15 @@ const ResultPage: FC = () => {
               <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center">
                 <span className="mr-2">💼</span> In Business
               </h3>
-              <p className="text-gray-700">{personality?.relation.business}</p>
+              <p className="text-gray-700 font-raleway text-justify indent-4">
+                {personality?.relation.business}
+              </p>
             </div>
           </div>
         </div>
 
         {/* Compatibility */}
-        <div className="bg-gradient-to-r from-purple-50 to-indigo-50 rounded-xl shadow-md overflow-hidden">
+        <div className="bg-gradient-to-r from-purple-50 to-indigo-50 rounded-xl shadow-md overflow-hidden mb-8">
           <div className="border-b border-purple-100 p-6">
             <h2 className="text-xl font-semibold text-purple-800">
               Compatibility
@@ -131,8 +146,29 @@ const ResultPage: FC = () => {
           <div className="p-6">
             <div className="flex items-start">
               <span className="text-3xl mr-3">💫</span>
-              <p className="text-gray-800">{personality?.match}</p>
+              <p className="text-gray-800 font-raleway text-justify">
+                {personality?.match}
+              </p>
             </div>
+          </div>
+        </div>
+
+        {/* Instagram Share Section */}
+        <div className="bg-white rounded-xl shadow-md overflow-hidden mb-8">
+          <div className="p-6">
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">
+              Share Your Results
+            </h2>
+            <p className="text-gray-600 mb-4">
+              Create a beautiful Instagram Story with your personality results
+              and share it with your friends!
+            </p>
+            <button
+              onClick={() => router.push("/result/instagram")}
+              className="w-full bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-bold py-3 px-6 rounded-lg transition-colors"
+            >
+              Create Instagram Story
+            </button>
           </div>
         </div>
       </div>
