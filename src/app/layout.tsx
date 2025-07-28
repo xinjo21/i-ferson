@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Itim from "next/font/local";
 import "./globals.css";
+import { PersonalityProvider } from "@/context/usePersonality";
 
 const itim = Itim({
   src: "../fonts/Itim/Itim-Regular.ttf",
@@ -19,7 +20,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${itim.className}  antialiased`}>{children}</body>
+      <body className={`${itim.className}  antialiased`}>
+        <PersonalityProvider>{children}</PersonalityProvider>
+      </body>
     </html>
   );
 }
