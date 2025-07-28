@@ -21,36 +21,6 @@ type PersonalityType = {
   match: string;
 };
 
-const personality: PersonalityType = {
-  mbti: {
-    type: "INTJ",
-    description:
-      "The Architect: INTJs are strategic thinkers who value knowledge and competence. They are independent, analytical, and often prefer to work alone or in small groups.",
-  },
-  enneagram: {
-    type: "5",
-    description:
-      "The Investigator: Enneagram 5s are curious, insightful, and seek to understand the world around them. They often have a strong desire for knowledge and can be withdrawn.",
-  },
-  insights:
-    "You possess a strong analytical mind and prefer to think things through before acting. Your inclination towards planning and structure indicates a preference for order and clarity in your life. You value independence and often find yourself in deep thought, analyzing situations rather than jumping into them impulsively.",
-  relation: {
-    love: "In romantic contexts, you are likely to be reserved but deeply committed. You value intellectual connection and may take time to open up emotionally.",
-    friendship:
-      "In friendships, you prefer a few close relationships over a large social circle. You appreciate deep conversations and shared interests.",
-    business:
-      "In business, you are strategic and prefer to work independently or in small teams. You value competence and efficiency, often taking the lead in planning and organizing.",
-  },
-  summary:
-    "You are an INTJ 5, characterized by your strategic thinking, independence, and a strong desire for knowledge. You approach life with a methodical mindset, valuing logic and clarity. While you may come off as reserved, you have a rich inner world and a deep understanding of complex concepts.",
-  weaknesses:
-    "Your tendency to overthink can lead to analysis paralysis. You may struggle with emotional expression and can come off as aloof or detached. Additionally, your high standards can make it difficult for you to connect with others who do not share your level of commitment or understanding.",
-  strengths:
-    "You are highly intelligent, strategic, and capable of deep focus. Your ability to analyze situations and create structured plans makes you an effective problem-solver. You are also independent and self-sufficient, often thriving in environments that allow for autonomy.",
-  match:
-    "You'd vibe well with an ENFP or 7w6, who can bring spontaneity and emotional depth to your life. You might clash with an ISTJ or 1w9, as their rigid structures may conflict with your need for flexibility and independence.",
-};
-
 const ResultPage: FC<PersonalityType> = (personality) => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 py-12 px-4 sm:px-6 lg:px-8">

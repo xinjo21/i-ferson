@@ -27,43 +27,22 @@ export default function Home() {
     schema: personalitySchema,
   });
 
-  const validateForm = () => {
-    const newErrors: { [key: number]: boolean } = {};
-    let isValid = true;
-
-    questions.forEach((_, index) => {
-      const questionNumber = index + 1;
-      const answers = selectedAnswers[questionNumber] || [];
-      if (answers.length < 1 || answers.length > 2) {
-        newErrors[questionNumber] = true;
-        isValid = false;
-      } else {
-        newErrors[questionNumber] = false;
-      }
-    });
-
-    setErrors(newErrors);
-    return isValid;
-  };
-
   const handleNext = () => {
     if (activeQuestion < questions.length - 1) {
       setActiveQuestion(activeQuestion + 1);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
 
   const handlePrevious = () => {
     if (activeQuestion > 0) {
       setActiveQuestion(activeQuestion - 1);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
 
   const handleSubmit = () => {
-    if (validateForm()) {
-      submit(selectedAnswers);
-    }
+    submit(selectedAnswers);
   };
 
   const handleClear = () => {
@@ -84,8 +63,12 @@ export default function Home() {
       <div className="max-w-3xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-3">Discover Your Personality</h1>
-          <p className="text-xl text-gray-600">Answer a few questions to uncover your unique traits</p>
+          <h1 className="text-4xl font-bold text-gray-900 mb-3">
+            Discover Your Personality
+          </h1>
+          <p className="text-xl text-gray-600">
+            Answer a few questions to uncover your unique traits
+          </p>
         </div>
 
         {/* Progress Bar */}
@@ -95,13 +78,16 @@ export default function Home() {
               Question {currentQuestionNumber} of {questions.length}
             </span>
             <span className="text-sm font-medium text-gray-500">
-              {Math.round((currentQuestionNumber / questions.length) * 100)}% Complete
+              {Math.round((currentQuestionNumber / questions.length) * 100)}%
+              Complete
             </span>
           </div>
           <div className="w-full bg-gray-200 rounded-full h-2.5">
-            <div 
+            <div
               className="bg-indigo-600 h-2.5 rounded-full transition-all duration-300"
-              style={{ width: `${(currentQuestionNumber / questions.length) * 100}%` }}
+              style={{
+                width: `${(currentQuestionNumber / questions.length) * 100}%`,
+              }}
             ></div>
           </div>
         </div>
@@ -113,54 +99,60 @@ export default function Home() {
               <h2 className="text-xl font-semibold text-gray-800">
                 {currentQuestion.question}
               </h2>
-              <span className="text-sm text-gray-500">
-                Select 1-2 options
-              </span>
+              <span className="text-sm text-gray-500">Select 1-2 options</span>
             </div>
-            
+
             <div className="space-y-3">
               {currentQuestion.answersKey.map((answer, index) => {
-                const isSelected = selectedAnswers[currentQuestionNumber]?.includes(answer) || false;
+                const isSelected =
+                  selectedAnswers[currentQuestionNumber]?.includes(answer) ||
+                  false;
                 return (
-                  <div 
+                  <div
                     key={index}
                     onClick={() => {
-                      const currentAnswers = selectedAnswers[currentQuestionNumber] || [];
+                      const currentAnswers =
+                        selectedAnswers[currentQuestionNumber] || [];
                       let newAnswers;
-                      
+
                       if (currentAnswers.includes(answer)) {
-                        newAnswers = currentAnswers.filter(a => a !== answer);
+                        newAnswers = currentAnswers.filter((a) => a !== answer);
                       } else if (currentAnswers.length < 2) {
                         newAnswers = [...currentAnswers, answer];
                       } else {
                         // If already 2 selected, replace the first one
                         newAnswers = [currentAnswers[1], answer];
                       }
-                      
-                      setSelectedAnswers(prev => ({
+
+                      setSelectedAnswers((prev) => ({
                         ...prev,
-                        [currentQuestionNumber]: newAnswers
+                        [currentQuestionNumber]: newAnswers,
                       }));
-                      
-                      if (errors[currentQuestionNumber] && newAnswers.length <= 2) {
-                        setErrors(prev => ({
+
+                      if (
+                        errors[currentQuestionNumber] &&
+                        newAnswers.length <= 2
+                      ) {
+                        setErrors((prev) => ({
                           ...prev,
-                          [currentQuestionNumber]: false
+                          [currentQuestionNumber]: false,
                         }));
                       }
                     }}
                     className={`p-4 border rounded-lg cursor-pointer transition-all duration-200 ${
-                      isSelected 
-                        ? 'border-indigo-500 bg-indigo-50' 
-                        : 'border-gray-200 hover:border-indigo-300 hover:bg-indigo-50/50'
+                      isSelected
+                        ? "border-indigo-500 bg-indigo-50"
+                        : "border-gray-200 hover:border-indigo-300 hover:bg-indigo-50/50"
                     }`}
                   >
                     <div className="flex items-center">
-                      <div className={`w-5 h-5 rounded-full border flex items-center justify-center mr-3 flex-shrink-0 ${
-                        isSelected 
-                          ? 'border-indigo-500 bg-indigo-500' 
-                          : 'border-gray-300'
-                      }`}>
+                      <div
+                        className={`w-5 h-5 rounded-full border flex items-center justify-center mr-3 flex-shrink-0 ${
+                          isSelected
+                            ? "border-indigo-500 bg-indigo-500"
+                            : "border-gray-300"
+                        }`}
+                      >
                         {isSelected && (
                           <div className="w-2.5 h-2.5 bg-white rounded-full"></div>
                         )}
@@ -186,25 +178,30 @@ export default function Home() {
               disabled={activeQuestion === 0}
               className={`px-6 py-2 rounded-lg font-medium ${
                 activeQuestion === 0
-                  ? 'text-gray-400 cursor-not-allowed'
-                  : 'text-indigo-600 hover:bg-indigo-50'
+                  ? "text-gray-400 cursor-not-allowed"
+                  : "text-indigo-600 hover:bg-indigo-50"
               }`}
             >
               Previous
             </button>
-            
+
             {isLastQuestion ? (
               <button
                 onClick={handleSubmit}
                 disabled={isLoading}
                 className="px-6 py-2 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
               >
-                {isLoading ? 'Analyzing...' : 'See My Results'}
+                {isLoading ? "Analyzing..." : "See My Results"}
               </button>
             ) : (
               <button
                 onClick={handleNext}
-                className="px-6 py-2 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 transition-colors"
+                disabled={!selectedAnswers[currentQuestionNumber]?.length}
+                className={`px-6 py-2 rounded-lg font-medium transition-colors ${
+                  selectedAnswers[currentQuestionNumber]?.length
+                    ? "bg-indigo-600 text-white hover:bg-indigo-700"
+                    : "bg-gray-300 text-gray-500 cursor-not-allowed"
+                }`}
               >
                 Next Question
               </button>
@@ -220,8 +217,8 @@ export default function Home() {
               onClick={() => setActiveQuestion(index)}
               className={`w-3 h-3 rounded-full transition-colors ${
                 index === activeQuestion
-                  ? 'bg-indigo-600 w-8'
-                  : 'bg-gray-300 hover:bg-gray-400'
+                  ? "bg-indigo-600 w-8"
+                  : "bg-gray-300 hover:bg-gray-400"
               }`}
               aria-label={`Go to question ${index + 1}`}
             />
